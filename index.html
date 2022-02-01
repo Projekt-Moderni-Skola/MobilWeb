@@ -1,47 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Ebike - Mobil</title>
-    <link
-      rel="stylesheet"
-      href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
-      integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
-      crossorigin=""
-    />
-    <script
-      src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
-      integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
-      crossorigin=""
-    ></script>
-    <script
-      src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
-      integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
-      crossorigin=""
-    ></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css"
+        integrity="sha512-xodZBNTC5n17Xt2atTPuE1HxjVMSvLVW9ocqUKLsCC5CXdbqCmblAshOMAS6/keqq/sMZMZ19scR4PsZChSR7A=="
+        crossorigin="" />
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"
+        integrity="sha512-XQoYMqMTK8LvdxXYG3nZ448hOEQiglfqkJs1NOQV44cWnUrBc8PkAOcXy20w0vlaXaVUearIOBhiXZ5V3ynxwA=="
+        crossorigin=""></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"
+        integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q=="
+        crossorigin=""></script>
+    <script src="https://kit.fontawesome.com/15b2ebab97.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/style/index.css" />
-  </head>
-  <body>
+</head>
+
+<body>
     <div id="top">
         <div id="topbox"></div>
-      <div id="topslider">
-        <a href="javascript:void(0)" onclick="slide();"
-          ><div id="arrow">
-            <svg
-              width="57"
-              height="24"
-              viewBox="0 0 57 24"
-              fill="none"
-            >
-              <path d="M3 4L29.122 18L54 4" stroke="white" stroke-width="9" />
-            </svg></div
-        ></a>
-      </div>
-
+        <div id="topslider">
+            <a href="javascript:void(0)" onclick="slide();">
+                <div id="arrow">
+                    <svg width="57" height="24" viewBox="0 0 57 24" fill="none">
+                        <path d="M3 4L29.122 18L54 4" stroke="white" stroke-width="9" />
+                    </svg>
+                </div>
+            </a>
+        </div>
+    </div>
+    <div class="bottom">
+        <div class="bottombox">
+            <div class="battery square">
+                Battery:&nbsp;<span id="batteryPerc"></span>
+            </div>
+            <div class="rainbow" id="batteryColor">
+            </div>
+            <button onclick="location.href='';" class="square" id="getMap">
+                <i class="fas fa-map-marked-alt"></i>
+            </button>
+        </div>
     </div>
     <div id="map"></div>
     <script src="/javascript/index.js"></script>
-  </body>
+</body>
+
 </html>

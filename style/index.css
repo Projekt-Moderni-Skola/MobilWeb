@@ -1,10 +1,26 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@500&display=swap");
+
+/*
+* Inside of this css file
+* 1. Variable declaration and basic setup
+* 2. Topbox styling
+* 3. Bottombox styling
+*/
+
+/* * 1. Variable declaration and basic setup * */
 * {
   margin: 0;
   padding: 0;
 }
 
-body, html {
+body,
+html {
   overflow-y: hidden;
+  font-family: "Open Sans", sans-serif;
+}
+
+:root {
+  --customGrey: #424242;
 }
 
 #map {
@@ -16,47 +32,94 @@ body, html {
   z-index: 1;
 }
 
+/* * 2. Topbox styling * */
+
 #top {
-    position: relative;
-    display: flex;
-    flex-direction: column;
+  position: relative;
+  display: flex;
+  flex-direction: column;
 
-    width: 100%;
-    height: 5.34045393858478vh;
-    justify-content: center;
-    align-items: center;
+  width: 100%;
+  height: 5.34045393858478vh;
+  justify-content: center;
+  align-items: center;
 
-    z-index: 2;
+  z-index: 2;
 }
 
 #topslider {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    background-color: #424242;
-    top: 0vh;
-    
-    width: 40%;
-    height: 40px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  background-color: var(--customGrey);
 
-    border-radius: 0px 0px 15px 15px;
+  width: 100%;
+  height: 50px;
 }
 
 #topbox {
-    position: relative;
-    width: 100%;
-    height: 60vh;
-    background-color: #424242;
-    top: 0vh;
-
-    border-radius: 0px 0px 15px 15px;
+  position: relative;
+  width: 100%;
+  height: 60vh;
+  background-color: var(--customGrey);
+  top: 0vh;
 }
 
-#arrow svg{
-    width: 40px;
-    margin-top: 8px;
+#arrow svg {
+  width: 40px;
+  margin-top: 8px;
 }
 
 .leaflet-control-container {
   display: none !important;
+}
+
+/* * 3. Bottombox styling * */
+
+.bottom {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+
+  z-index: 2;
+}
+
+.bottombox {
+  height: 60px;
+  width: 100%;
+  background-color: var(--customGrey);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bottombox button {
+  background-color: #009ee2 !important;
+  color: white;
+  border: none;
+  font-size: 25px;
+}
+
+.bottombox button:active {
+  background-color: #0178aa !important;
+}
+
+.square {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  height: 100%;
+  width: 50%;
+  background-color: #4242425f;
+  font-size: larger;
+  z-index: 2;
+}
+
+.rainbow {
+  position: absolute;
+  width: 50%;
+  height: 60px;
+  z-index: 1;
+  left: 0;
 }
