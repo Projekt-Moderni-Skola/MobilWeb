@@ -21,6 +21,7 @@ html {
 
 :root {
   --customGrey: #424242;
+  --topGrey:#6C6C6C;
 }
 
 #map {
@@ -63,7 +64,13 @@ html {
   height: 60vh;
   background-color: var(--customGrey);
   top: 0vh;
+
+  display: flex;
+  justify-content: center;
+  text-align: center;
 }
+
+
 
 #arrow svg {
   width: 40px;
@@ -73,6 +80,42 @@ html {
 .leaflet-control-container {
   display: none !important;
 }
+
+#topText {
+    display: none;
+    opacity: 0;
+    width: 95%;
+    flex-direction: column;
+}
+
+.grid {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+.grid div {
+    height: 170px;
+    width: 42%;
+
+    margin: 9px;
+    border-radius: 15px;
+    background-color: var(--topGrey);
+
+    color: white;
+}
+
+.grid div p {
+    margin-top: 10px;
+}
+
+.name {
+    color: white;
+    padding-top: 15px;
+}
+
 
 /* * 3. Bottombox styling * */
 
