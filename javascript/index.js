@@ -1,37 +1,69 @@
+var storage = window.localStorage;
+const vehicle_code = storage.getItem("code")
+var main = document.getElementById("main")
+var form = document.getElementById("form")
+
 window.onload = async () => {
-    var m = new Date();
-    const options = { timeZone: 'Europe/Prague', timeZoneName: 'short' }
-    var dateString =
-        m.getUTCFullYear() + "-" +
-        ("0" + (m.getUTCMonth() + 1)).slice(-2) + "-" +
-        ("0" + m.getUTCDate()).slice(-2) + " " +
-        m.toLocaleTimeString("en-GB", options).slice(0, -4)
+    if (vehicle_code != null) {
+        form.style.display = "None"
+        main.style.display = "Block"
 
-    var strings = dateString + "|ZIDAN|Ad0oNkQWJi7LJBsQoCqV"
-    var pbHash = SHA1(strings)
+        var date = getDate()
+        var code = vehicle_code
+        var myHash = hash(date, code)
+        response = await getData(date, code, myHash)
 
-    var config =
-    {
-        dttm: dateString,
-        vehicle_code: "ZIDAN",
-        signature: pbHash
+        await loadMap(response)
+    } else {
+        main.style.display = "None"
     }
-    const response = await fetch("http://emoto-api.bubileg.cz/get-last-log", {
-        method: "POST",
-        body: JSON.stringify(config),
-    }).then(res => res.json())
 
+
+}
+
+async function login() {
+    var date = getDate()
+    var code = getCode()
+    var myHash = hash(date, code)
+
+    response = await getData(date, code, myHash)
+
+    if (response["status_key"] != 11) {
+        alert("Zadal jste neplatný kód!")
+    } else {
+        loadMap(response)
+
+        main.style.display = "Block"
+        form.style.display = "None"
+
+        storage.setItem("code", code)
+        location.reload();
+    }
+}
+
+function unlink() {
+    storage.removeItem("code");
+    location.reload()
+}
+
+async function loadMap(response) {
     gps = response["log"]["gps"]
     gps = gps.split(", ")
     gps[0] = gps[0].slice(0, -2)
     gps[1] = gps[1].slice(0, -2)
     battery = response["log"]["battery_capacity"]
+    km = response["log"]["mileage"]
 
+    var span;
     span = document.getElementById('batteryPerc')
     link = `"http://www.google.com/maps/place/${gps[0]},${gps[1]}/data=!3m1!4b1"`
     document.getElementById("getMap").setAttribute('onclick', 'location.href=' + link + ';')
     span.innerHTML = battery + "%"
 
+    span = document.getElementById('kmdriven')
+    span.innerHTML = km + " km"
+    var name = document.getElementById("bikeName")
+    name.innerHTML = response["log"]["vehicle_code"]
     var map = L.map("map", { zoomControl: false }).setView(
         [gps[0], gps[1]],
         20
@@ -57,6 +89,53 @@ window.onload = async () => {
 
     batteryColor = document.getElementById('batteryColor')
     batteryColor.style.background = getColor(battery / 100)
+}
+
+function getDate() {
+    var m = new Date();
+    const options = { timeZone: 'Europe/Prague', timeZoneName: 'short' }
+    var dateString =
+        m.getUTCFullYear() + "-" +
+        ("0" + (m.getUTCMonth() + 1)).slice(-2) + "-" +
+        ("0" + m.getUTCDate()).slice(-2) + " " +
+        m.toLocaleTimeString("en-GB", options).slice(0, -4)
+
+    return dateString;
+}
+
+function hash(dateString, vehicle_code) {
+    var strings = dateString + "|" + vehicle_code + "|Ad0oNkQWJi7LJBsQoCqV"
+    var pbHash = SHA1(strings)
+
+    return pbHash
+}
+
+async function getData(dateString, vehicle_code, hash) {
+    var config =
+    {
+        dttm: dateString,
+        vehicle_code: vehicle_code,
+        signature: hash
+    }
+    const response = await fetch("http://emoto-api.bubileg.cz/get-last-log", {
+        method: "POST",
+        body: JSON.stringify(config),
+    }).then(res => res.json())
+
+    return response
+}
+
+function getCode() {
+    code =
+        document.getElementById("0").value +
+        document.getElementById("1").value +
+        document.getElementById("2").value +
+        document.getElementById("3").value +
+        document.getElementById("4").value
+
+    code = code.toUpperCase()
+
+    return code
 }
 
 function getColor(value) {

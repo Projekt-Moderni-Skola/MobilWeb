@@ -5,6 +5,7 @@
 * 1. Variable declaration and basic setup
 * 2. Topbox styling
 * 3. Bottombox styling
+* 4. Login Styling
 */
 
 /* * 1. Variable declaration and basic setup * */
@@ -17,11 +18,12 @@ body,
 html {
   overflow-y: hidden;
   font-family: "Open Sans", sans-serif;
+  background-color: #222222;
 }
 
 :root {
   --customGrey: #424242;
-  --topGrey:#6C6C6C;
+  --topGrey: #6c6c6c;
 }
 
 #map {
@@ -70,8 +72,6 @@ html {
   text-align: center;
 }
 
-
-
 #arrow svg {
   width: 40px;
   margin-top: 8px;
@@ -82,40 +82,45 @@ html {
 }
 
 #topText {
-    display: none;
-    opacity: 0;
-    width: 95%;
-    flex-direction: column;
+  display: none;
+  opacity: 0;
+  width: 95%;
+  flex-direction: column;
 }
 
 .grid {
-    width: 100%;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    margin-top: 10px;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 10px;
 }
 
 .grid div {
-    height: 170px;
-    width: 42%;
+  height: 170px;
+  width: 42%;
 
-    margin: 9px;
-    border-radius: 15px;
-    background-color: var(--topGrey);
+  margin: 9px;
+  border-radius: 15px;
+  background-color: var(--topGrey);
 
-    color: white;
+  color: white;
 }
 
 .grid div p {
-    margin-top: 10px;
+  margin-top: 10px;
 }
 
 .name {
-    color: white;
-    padding-top: 15px;
+  color: white;
+  padding-top: 15px;
 }
 
+.bottomtext {
+  padding-top: 15%;
+  font-size: 25px;
+  font-weight: bold;
+}
 
 /* * 3. Bottombox styling * */
 
@@ -166,3 +171,50 @@ html {
   z-index: 1;
   left: 0;
 }
+
+/* * 4. Login Styling * */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 50%;
+  background-color: #dbeef091;
+  padding: 10px;
+  padding-top: 50px;
+  padding-bottom: 50px;
+  border-radius: 15px;
+
+}
+
+.form {
+  margin-top: 35vh;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form p {
+    margin-bottom: 5px;
+}
+
+input {
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  margin: 5px;
+  outline: 0;
+  border-width: 0 0 2px;
+  border-color: #525252;
+  background-color: #52525291;
+}
+
+.form button {
+    margin: 10px;
+}
+
+input:focus {
+    border-color: #d1d1d1;
+  }
