@@ -117,7 +117,7 @@ async function getData(dateString, vehicle_code, hash) {
         vehicle_code: vehicle_code,
         signature: hash
     }
-    const response = await fetch("http://emoto-api.bubileg.cz/get-last-log", {
+    const response = await fetch("https://www.e-zidane.cz/api/get-last-log", {
         method: "POST",
         body: JSON.stringify(config),
     }).then(res => res.json())
